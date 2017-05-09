@@ -1,0 +1,9 @@
+{% extends 'newspapper/home.html' %}
+
+{% block content %}
+    <ul>
+    {% for article in article_list %}
+        <li>{{ article }}</li>
+    {% endfor %}
+    </ul>
+{% endblock %}
