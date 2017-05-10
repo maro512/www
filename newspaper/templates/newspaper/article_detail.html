@@ -1,0 +1,17 @@
+{% extends 'newspaper/home.html' %}
+
+{% block content %}
+    <div class="post">
+        <div class="date">{{ article.date }}</div>
+        <h1>{{ article.title }}</h1>
+        <p>{{ article.content|linebreaksbr }}</p>
+        <p>{{ article.author }}</p>
+    </div>
+    <div>
+        {% for comment in comments %}
+            <p>{{ comment.date }}</p>
+            <p>{{ comment.author }}</p>
+            <p>{{ comment.content }}</p>
+        {% endfor %}
+    </div>
+{% endblock %}
