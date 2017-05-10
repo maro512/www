@@ -7,6 +7,8 @@
         <p>{{ article.content|linebreaksbr }}</p>
         <p>{{ article.author }}</p>
     </div>
+    <a class="btn btn-default" href="{% url 'article_edit' pk=article.pk %}">Edit</a>
+    <a class="btn btn-default" href="{% url 'comment_new' pk=article.pk %}">Comment</a>
     <div>
         {% for comment in comments %}
             <p>{{ comment.date }}</p>
