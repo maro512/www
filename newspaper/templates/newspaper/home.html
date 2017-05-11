@@ -15,6 +15,12 @@
                 <a href="{% url 'article_new' %}" class="btn btn-primary">Add new article</a>
                 <a href="{% url 'not_published_list' %}" class="btn btn-primary">Not published</a>
             </div>
+            <p class="top-menu">Hello {{ user.username }}
+                <small>(<a href="{% url 'logout' %}">Log out</a>)</small>
+            </p>
+        {% else %}
+            <a href="{% url 'login' %}" class="top-menu">Login</a>
+
         {% endif %}
         <h1><a href="/">Home Page</a></h1>
     </div>
