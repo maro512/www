@@ -28,7 +28,7 @@
                   <li><a>Hello, {{ user.username }}</a></li>
                   <li><a href="{% url 'logout' %}">Log out</a></li>
               {% else %}
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Register</a></li>
+                <li><a href="{% url 'user_new' %}"><span class="glyphicon glyphicon-user"></span> Register</a></li>
                 <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
               {% endif %}
             </ul>

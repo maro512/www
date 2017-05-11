@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Article, Comment
-from .forms import ArticleForm, CommentForm
+from .forms import ArticleForm, CommentForm, CreateUserForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import views
 
 
 def article_list(request):
@@ -79,4 +80,15 @@ def comment_remove(request, fk, pk):
     comment = get_object_or_404(Comment, pk=pk)
     comment.delete()
     return redirect('article_detail', pk=fk)
+
+
+def user_new(request):
+    if request.method == "POST":
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(views.login)
+    else:
+        form = CreateUserForm()
+    return render(request, 'registration/register.html', {'form': form})
 
