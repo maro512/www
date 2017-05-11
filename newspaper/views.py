@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Article, Comment
 from .forms import ArticleForm, CommentForm
+from django.contrib.auth.decorators import login_required
 
 
 def article_list(request):
@@ -24,6 +25,7 @@ def article_detail(request, pk):
         return render(request, 'newspaper/article_detail.html', {'article': article, 'comments': comments, 'form': form})
 
 
+@login_required
 def article_new(request):
     if request.method == "POST":
         form = ArticleForm(request.POST)
@@ -37,6 +39,7 @@ def article_new(request):
     return render(request, 'newspaper/article_edit.html', {'form': form})
 
 
+@login_required
 def article_edit(request, pk):
     article = get_object_or_404(Article, pk=pk)
     if request.method == "POST":
@@ -51,23 +54,27 @@ def article_edit(request, pk):
     return render(request, 'newspaper/article_edit.html', {'form': form})
 
 
+@login_required
 def not_published_list(request):
     articles_list = Article.objects.filter(is_published=False).order_by('-date')
     return render(request, 'newspaper/article_list.html', {'article_list': articles_list})
 
 
+@login_required
 def article_publish(request, pk):
     article = get_object_or_404(Article, pk=pk)
     article.publish()
     return redirect('article_detail', pk=pk)
 
 
+@login_required
 def article_remove(request, pk):
     article = get_object_or_404(Article, pk=pk)
     article.delete()
     return redirect('article_list')
 
 
+@login_required
 def comment_remove(request, fk, pk):
     comment = get_object_or_404(Comment, pk=pk)
     comment.delete()
