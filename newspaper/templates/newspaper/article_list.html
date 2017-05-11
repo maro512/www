@@ -3,7 +3,12 @@
 {% block content %}
     <div>
     {% for article in article_list %}
-        <h3><a href="{% url 'article_detail' pk=article.pk %}">{{ article }}</a></h3>
+{#        <h3><a href="{% url 'article_detail' pk=article.pk %}">{{ article }}</a></h3>#}
+        <div class="col-md-6">
+            <a href="{% url 'article_detail' pk=article.pk %}">
+                {% include 'newspaper/article.html' with article=article %}
+            </a>
+        </div>
     {% endfor %}
     </div>
 {% endblock %}

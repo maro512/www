@@ -7,7 +7,7 @@
                     <span class="badge pull-right">
                         <a href="{% url 'comment_remove' fk=article.pk pk=comment.pk %}">Remove</a>
                     </span>
-                {% endif %}
+                    {% endif %}
                 </h4>
             </div>
             <div class="panel-body">{{ comment.content|linebreaksbr }}</div>

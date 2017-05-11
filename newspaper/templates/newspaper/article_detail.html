@@ -13,14 +13,14 @@
     </div>
     <div>
         {% if user.is_authenticated %}
-
-            <div class="btn-group">
-                <a class="btn btn-primary" href="{% url 'article_remove' pk=article.pk %}">Remove</a>
-                <a class="btn btn-primary" href="{% url 'article_edit' pk=article.pk %}">Edit</a>
-            </div>
+            {% if user.is_staff or user == comment.author %}
+                <div class="btn-group">
+                    <a class="btn btn-primary" href="{% url 'article_remove' pk=article.pk %}">Remove</a>
+                    <a class="btn btn-primary" href="{% url 'article_edit' pk=article.pk %}">Edit</a>
+                </div>
+            {% endif %}
 
             {% include 'newspaper/comment_new.html' with form=form %}
-
         {% endif %}
     </div>
 
