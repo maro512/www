@@ -2,8 +2,8 @@
     {% for comment in comments %}
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h4>{{ comment.author }} <small>{{ comment.date }}</small>
-                    {% if user.is_authenticated %}
+                <h4>{{ comment.author }} <small style="color:white">{{ comment.date }}</small>
+                    {% if user.is_staff or user == comment.author %}
                     <span class="badge pull-right">
                         <a href="{% url 'comment_remove' fk=article.pk pk=comment.pk %}">Remove</a>
                     </span>

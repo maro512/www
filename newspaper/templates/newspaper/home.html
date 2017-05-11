@@ -18,6 +18,8 @@
               <li><a href="/">Home</a></li>
               {% if user.is_authenticated %}
                   <li><a href="{% url 'article_new' %}" >Add new article</a></li>
+              {% endif %}
+              {% if user.is_staff %}
                   <li><a href="{% url 'not_published_list' %}" >Not published</a></li>
               {% endif %}
             </ul>
