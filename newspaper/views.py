@@ -28,7 +28,7 @@ def article_detail(request, pk):
 @login_required
 def article_new(request):
     if request.method == "POST":
-        form = ArticleForm(request.POST)
+        form = ArticleForm(request.POST, request.FILES)
         if form.is_valid():
             article = form.save(commit=False)
             article.author = request.user
