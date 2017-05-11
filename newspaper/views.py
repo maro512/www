@@ -11,7 +11,17 @@ def article_list(request):
 def article_detail(request, pk):
     article = get_object_or_404(Article, pk=pk)
     comments = Comment.objects.filter(article=pk).order_by('-date')
-    return render(request, 'newspaper/article_detail.html', {'article': article, 'comments': comments})
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.author = request.user
+            comment.article = article
+            comment.save()
+            return redirect('article_detail', pk=article.pk)
+    else:
+        form = CommentForm()
+        return render(request, 'newspaper/article_detail.html', {'article': article, 'comments': comments, 'form': form})
 
 
 def article_new(request):
@@ -40,17 +50,3 @@ def article_edit(request, pk):
         form = ArticleForm(instance=article)
     return render(request, 'newspaper/article_edit.html', {'form': form})
 
-
-def comment_new(request, pk):
-    if request.method == "POST":
-        form = CommentForm(request.POST)
-        article = get_object_or_404(Article, pk=pk)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.author = request.user
-            comment.article = article
-            comment.save()
-            return redirect('article_detail', pk=article.pk)
-    else:
-        form = CommentForm()
-    return render(request, 'newspaper/comment_edit.html', {'form': form})

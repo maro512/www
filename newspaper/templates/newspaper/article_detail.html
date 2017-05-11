@@ -8,12 +8,16 @@
         <p>{{ article.author }}</p>
     </div>
     <a class="btn btn-default" href="{% url 'article_edit' pk=article.pk %}">Edit</a>
-    <a class="btn btn-default" href="{% url 'comment_new' pk=article.pk %}">Comment</a>
+    <form method="POST" class="post-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Comment</button>
+    </form>
+
     <div>
         {% for comment in comments %}
             <p>{{ comment.date }}</p>
             <p>{{ comment.author }}</p>
-            <p>{{ comment.content }}</p>
+            <p>{{ comment.content|linebreaksbr }}</p>
         {% endfor %}
     </div>
 {% endblock %}
