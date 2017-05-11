@@ -60,3 +60,16 @@ def article_publish(request, pk):
     article = get_object_or_404(Article, pk=pk)
     article.publish()
     return redirect('article_detail', pk=pk)
+
+
+def article_remove(request, pk):
+    article = get_object_or_404(Article, pk=pk)
+    article.delete()
+    return redirect('article_list')
+
+
+def comment_remove(request, fk, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    comment.delete()
+    return redirect('article_detail', pk=fk)
+

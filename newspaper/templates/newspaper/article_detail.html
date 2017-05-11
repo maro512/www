@@ -5,12 +5,16 @@
         {% if article.is_published == False %}
             <a class="btn btn-default" href="{% url 'article_publish' pk=article.pk %}">Publish</a>
         {% endif %}
+
         <div class="date">{{ article.date }}</div>
         <h1>{{ article.title }}</h1>
         <p>{{ article.content|linebreaksbr }}</p>
         <p>{{ article.author }}</p>
     </div>
-    <a class="btn btn-default" href="{% url 'article_edit' pk=article.pk %}">Edit</a>
+        {% if user.is_authenticated %}
+            <a class="btn btn-default" href="{% url 'article_remove' pk=article.pk %}">Remove</a>
+            <a class="btn btn-default" href="{% url 'article_edit' pk=article.pk %}">Edit</a>
+        {% endif %}
     <form method="POST" class="post-form">{% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="save btn btn-default">Comment</button>
@@ -21,6 +25,9 @@
             <p>{{ comment.date }}</p>
             <p>{{ comment.author }}</p>
             <p>{{ comment.content|linebreaksbr }}</p>
+            {% if user.is_authenticated %}
+                <a class="btn btn-default" href="{% url 'comment_remove' fk=article.pk pk=comment.pk %}">Remove</a>
+            {% endif %}
         {% endfor %}
     </div>
 {% endblock %}
