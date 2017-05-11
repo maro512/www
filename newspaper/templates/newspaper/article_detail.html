@@ -2,6 +2,9 @@
 
 {% block content %}
     <div class="post">
+        {% if article.is_published == False %}
+            <a class="btn btn-default" href="{% url 'article_publish' pk=article.pk %}">Publish</a>
+        {% endif %}
         <div class="date">{{ article.date }}</div>
         <h1>{{ article.title }}</h1>
         <p>{{ article.content|linebreaksbr }}</p>

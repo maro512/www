@@ -50,3 +50,13 @@ def article_edit(request, pk):
         form = ArticleForm(instance=article)
     return render(request, 'newspaper/article_edit.html', {'form': form})
 
+
+def not_published_list(request):
+    articles_list = Article.objects.filter(is_published=False).order_by('-date')
+    return render(request, 'newspaper/article_list.html', {'article_list': articles_list})
+
+
+def article_publish(request, pk):
+    article = get_object_or_404(Article, pk=pk)
+    article.publish()
+    return redirect('article_detail', pk=pk)

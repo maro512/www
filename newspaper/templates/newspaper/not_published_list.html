@@ -1,0 +1,9 @@
+{% extends 'newspaper/home.html' %}
+
+{% block content %}
+    <div>
+    {% for article in article_list %}
+        <h3><a href="{% url 'article_detail' pk=article.pk %}">{{ article }}</a></h3>
+    {% endfor %}
+    </div>
+{% endblock %}
