@@ -23,13 +23,6 @@
 
 
     <div>
-        {% for comment in comments %}
-            <p>{{ comment.date }}</p>
-            <p>{{ comment.author }}</p>
-            <p>{{ comment.content|linebreaksbr }}</p>
-            {% if user.is_authenticated %}
-                <a class="btn btn-default" href="{% url 'comment_remove' fk=article.pk pk=comment.pk %}">Remove</a>
-            {% endif %}
-        {% endfor %}
+        {% include 'newspaper/comment.html' with comments=comments %}
     </div>
 {% endblock %}
