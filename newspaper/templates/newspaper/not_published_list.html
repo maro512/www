@@ -4,6 +4,8 @@
     <div>
     {% for article in article_list %}
         <h3><a href="{% url 'article_detail' pk=article.pk %}">{{ article }}</a></h3>
+        <p>{{ article.date }}</p>
+        <p>{{ article.author }}</p>
     {% endfor %}
     </div>
 {% endblock %}

@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Article, Comment
 from .forms import ArticleForm, CommentForm, CreateUserForm
@@ -58,7 +59,7 @@ def article_edit(request, pk):
 @login_required
 def not_published_list(request):
     articles_list = Article.objects.filter(is_published=False).order_by('-date')
-    return render(request, 'newspaper/article_list.html', {'article_list': articles_list})
+    return render(request, 'newspaper/not_published_list.html', {'article_list': articles_list})
 
 
 @login_required
@@ -92,3 +93,14 @@ def user_new(request):
         form = CreateUserForm()
     return render(request, 'registration/register.html', {'form': form})
 
+
+@login_required
+def my_article(request, user):
+    articles_list = Article.objects.filter(author=user).order_by('-date')
+    return render(request, 'newspaper/my_article.html', {'article_list': articles_list})
+
+
+@login_required
+def user_list(request):
+    users = User.objects
+    return render(request, 'newspaper/user_list.html', {'users': users})

@@ -18,9 +18,11 @@
               <li><a href="/">Home</a></li>
               {% if user.is_authenticated %}
                   <li><a href="{% url 'article_new' %}" >Add new article</a></li>
+                  <li><a href="{% url 'my_article' user=user.pk %}" >My articles</a></li>
               {% endif %}
               {% if user.is_staff %}
                   <li><a href="{% url 'not_published_list' %}" >Not published</a></li>
+                  <li><a href="{% url 'user_list' %}" >User list</a></li>
               {% endif %}
             </ul>
             <ul class="nav navbar-nav navbar-right">
