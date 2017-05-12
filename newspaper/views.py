@@ -1,7 +1,9 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Article, Comment
-from .forms import ArticleForm, CommentForm, CreateUserForm
+from django.utils import timezone
+
+from .models import Article, Comment, Event
+from .forms import ArticleForm, CommentForm, CreateUserForm, EventForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import views
 
@@ -102,5 +104,42 @@ def my_article(request, user):
 
 @login_required
 def user_list(request):
-    users = User.objects
+    users = User.objects.all()
     return render(request, 'newspaper/user_list.html', {'users': users})
+
+
+def event_list(request):
+    events = Event.objects.filter(date__gte=timezone.now()).order_by('date')
+    return render(request, 'newspaper/event_list.html', {'events': events})
+
+
+@login_required
+def event_new(request):
+    if request.method == "POST":
+        form = EventForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('event_list')
+    else:
+        form = EventForm()
+    return render(request, 'newspaper/event_edit.html', {'form': form})
+
+
+@login_required
+def event_edit(request, pk):
+    event = get_object_or_404(Event, pk=pk)
+    if request.method == "POST":
+        form = ArticleForm(request.POST, instance=event)
+        if form.is_valid():
+            event.save()
+            return redirect('event_list')
+    else:
+        form = ArticleForm(instance=event)
+    return render(request, 'newspaper/event_edit.html', {'form': form})
+
+
+@login_required
+def event_remove(request, pk):
+    event = get_object_or_404(Event, pk=pk)
+    event.delete()
+    return redirect('event_list')

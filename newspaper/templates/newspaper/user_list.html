@@ -2,7 +2,7 @@
 
 {% block content %}
     <div>
-    {% for user in users.all %}
+    {% for user in users %}
         <p>{{ user.username }}</p>
         <p>Number of articles: {{ user.articles.count }}</p>
         <p>Number of comments: {{ user.comments.count }}</p>

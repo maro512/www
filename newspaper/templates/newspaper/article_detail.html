@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="post">
-        {% if article.is_published == False %}
+        {% if article.is_published == False and user.is_staff %}
             <a class="btn btn-default" href="{% url 'article_publish' pk=article.pk %}">Publish</a>
         {% endif %}
 

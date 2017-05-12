@@ -25,10 +25,6 @@ class Comment(models.Model):
     content = models.TextField()
 
 
-
-
-
-
-
-
-
+class Event(models.Model):
+    date = models.DateTimeField(default=timezone.now)
+    content = models.TextField()

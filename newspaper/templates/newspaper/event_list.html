@@ -1,0 +1,18 @@
+{% extends 'newspaper/home.html' %}
+
+{% block content %}
+    {% if user.is_staff %}
+        <a class="btn btn-primary" href="{% url 'event_new' %}">Add event</a>
+    {% endif %}
+    <div>
+        {% for event in events %}
+            <h4>{{ event.date }} {{ event.content }}</h4>
+            {% if user.is_staff %}
+                <div class="btn-group">
+                    <a class="btn btn-primary" href="{% url 'event_remove' pk=event.pk %}">Remove</a>
+                    <a class="btn btn-primary" href="{% url 'event_edit' pk=event.pk %}">Edit</a>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

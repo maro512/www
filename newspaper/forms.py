@@ -1,8 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 
-from .models import Article
-from .models import Comment
+from .models import Article, Comment, Event
 
 
 class ArticleForm(forms.ModelForm):
@@ -48,3 +47,9 @@ class CreateUserForm(forms.Form):
                                             )
 
         return new_user
+
+
+class EventForm(forms.ModelForm):
+    class Meta:
+        model = Event
+        fields = ('date', 'content',)
