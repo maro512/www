@@ -1,11 +1,13 @@
 {% extends 'newspaper/home.html' %}
 
 {% block content %}
-    <div>
+    <div class="list-group">
     {% for article in article_list %}
-        <h3>{% if article.is_published == False %}[NOT PUBLISHED] {% endif %}
-            <a href="{% url 'article_detail' pk=article.pk %}">{{ article }}</a></h3>
-        <p>{{ article.date }} Comments: {{ article.comments.count }}</p>
+        <a href="{% url 'article_detail' pk=article.pk %}" class="list-group-item">
+            <h3>{{ article }} <small>{{ article.date }} Comments: {{ article.comments.count }}</small>
+            {% if article.is_published == False %}<span class="badge pull-right">NOT PUBLISHED</span>{% endif %}
+            </h3>
+        </a>
     {% endfor %}
     </div>
 {% endblock %}

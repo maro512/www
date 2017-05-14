@@ -1,11 +1,9 @@
 {% extends 'newspaper/home.html' %}
 
 {% block content %}
-    <div>
     {% for article in article_list %}
-        <h3><a href="{% url 'article_detail' pk=article.pk %}">{{ article }}</a></h3>
-        <p>{{ article.date }}</p>
-        <p>{{ article.author }}</p>
+        <a href="{% url 'article_detail' pk=article.pk %}" class="list-group-item">
+            <h3>{{ article }} <small>  {{ article.date }},   author: {{ article.author }}</small></h3>
+        </a>
     {% endfor %}
-    </div>
 {% endblock %}

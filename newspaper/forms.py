@@ -8,6 +8,10 @@ class ArticleForm(forms.ModelForm):
     class Meta:
         model = Article
         fields = ('title', 'content', 'photo',)
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'content': forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}),
+        }
 
 
 class CommentForm(forms.ModelForm):
@@ -20,10 +24,10 @@ class CommentForm(forms.ModelForm):
 
 
 class CreateUserForm(forms.Form):
-    username = forms.CharField(max_length=30)
-    password1 = forms.CharField(max_length=30, widget=forms.PasswordInput())
-    password2 = forms.CharField(max_length=30, widget=forms.PasswordInput())
-    email = forms.EmailField(required=True)
+    username = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'class': 'form-control', }))
+    password1 = forms.CharField(max_length=30, widget=forms.PasswordInput(attrs={'class': 'form-control', }))
+    password2 = forms.CharField(max_length=30, widget=forms.PasswordInput(attrs={'class': 'form-control', }))
+    email = forms.EmailField(required=True, widget=forms.TextInput(attrs={'class': 'form-control', }))
 
     def clean_username(self):
         try:
@@ -45,7 +49,6 @@ class CreateUserForm(forms.Form):
                                             password=self.cleaned_data['password1'],
                                             email=self.cleaned_data['email'],
                                             )
-
         return new_user
 
 

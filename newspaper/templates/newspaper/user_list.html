@@ -1,12 +1,31 @@
 {% extends 'newspaper/home.html' %}
 
 {% block content %}
-    <div>
-    {% for user in users %}
-        <p>{{ user.username }}</p>
-        <p>Number of articles: {{ user.articles.count }}</p>
-        <p>Number of comments: {{ user.comments.count }}</p>
-        <p>---------------------------------------------</p>
-    {% endfor %}
+    <div class="col-xs-10 col-xs-offset-1">
+    <table class='table'>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>articles</th>
+                <th>comments</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.username }}</td>
+                <td>{{ user.articles.count }}</td>
+                <td>{{ user.comments.count }}</td>
+            </tr>
+         <tbody>
+
+
+{#            #}
+{#            <p>{{ user.username }}</p>#}
+{#            <p>Number of articles: {{ user.articles.count }}</p>#}
+{#            <p>Number of comments: {{ user.comments.count }}</p>#}
+{#            <p>---------------------------------------------</p>#}
+        {% endfor %}
+    </table>
     </div>
 {% endblock %}
