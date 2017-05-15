@@ -5,6 +5,7 @@ from django.utils import timezone
 from .models import Article, Comment, Event
 from .forms import ArticleForm, CommentForm, CreateUserForm, EventForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth import views
 
 
@@ -58,13 +59,16 @@ def article_edit(request, pk):
     return render(request, 'newspaper/article_edit.html', {'form': form})
 
 
-@login_required
 def not_published_list(request):
+    if not request.user.is_authenticated:
+        return render(request, 'errors/401.html', status=401)
+    if not request.user.is_staff:
+        return render(request, 'errors/403.html', status=403)
     articles_list = Article.objects.filter(is_published=False).order_by('-date')
     return render(request, 'newspaper/not_published_list.html', {'article_list': articles_list})
 
 
-@login_required
+@staff_member_required
 def article_publish(request, pk):
     article = get_object_or_404(Article, pk=pk)
     article.publish()
@@ -84,7 +88,6 @@ def comment_remove(request, fk, pk):
     comment.delete()
     return redirect('article_detail', pk=fk)
 
-
 def user_new(request):
     if request.method == "POST":
         form = CreateUserForm(request.POST)
@@ -102,8 +105,11 @@ def my_article(request, user):
     return render(request, 'newspaper/my_article.html', {'article_list': articles_list})
 
 
-@login_required
 def user_list(request):
+    if not request.user.is_authenticated:
+        return render(request, 'errors/401.html', status=401)
+    if not request.user.is_staff:
+        return render(request, 'errors/403.html', status=403)
     users = User.objects.all()
     return render(request, 'newspaper/user_list.html', {'users': users})
 
