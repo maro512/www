@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 
-from .models import Article, Comment, Event
+from .models import Article, Comment, Favorite
 
 
 class ArticleForm(forms.ModelForm):
@@ -52,7 +52,7 @@ class CreateUserForm(forms.Form):
         return new_user
 
 
-class EventForm(forms.ModelForm):
+class FavoriteForm(forms.Form):
     class Meta:
-        model = Event
-        fields = ('date', 'content',)
+        model = Favorite
+        fields = ('comment', 'rating',)

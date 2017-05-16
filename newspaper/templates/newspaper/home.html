@@ -16,8 +16,8 @@
               <a class="navbar-brand" href="/" >ArticleSite</a>
             </div>
             <ul class="nav navbar-nav">
-              <li><a href="{% url 'event_list' %}">Events</a></li>
               {% if user.is_authenticated %}
+                  <li><a href="{% url 'favorite_list' %}">Favorite</a></li>
                   <li><a href="{% url 'article_new' %}" >Add new article</a></li>
                   <li><a href="{% url 'my_article' %}" >My articles</a></li>
               {% endif %}

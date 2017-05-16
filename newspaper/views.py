@@ -17,7 +17,7 @@ def article_list(request):
 def article_detail(request, pk):
     article = get_object_or_404(Article, pk=pk)
     comments = Comment.objects.filter(article=pk).order_by('-date')
-    if request.method == "POST":
+    if request.method == "POST" and 'comment' in request.POST:
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
@@ -25,9 +25,19 @@ def article_detail(request, pk):
             comment.article = article
             comment.save()
             return redirect('article_detail', pk=article.pk)
+    elif request.method == "POST" and 'favorite' in request.POST:
+        form = FavoriteForm(request.POST)
+        if form.is_valid():
+            favorite = Favorite()
+            favorite.user = request.user
+            favorite.article = article
+            favorite.save()
+            return redirect('article_detail', pk=article.pk)
     else:
         form = CommentForm()
-        return render(request, 'newspaper/article_detail.html', {'article': article, 'comments': comments, 'form': form})
+        favorite = FavoriteForm()
+        return render(request, 'newspaper/article_detail.html',
+                      {'article': article, 'comments': comments, 'form': form, 'favorite': favorite})
 
 
 def article_new(request):

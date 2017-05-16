@@ -6,6 +6,10 @@
             <a class="btn btn-primary" href="{% url 'article_publish' pk=article.pk %}">Publish</a>
         {% endif %}
 
+        <form enctype="multipart/form-data" method="POST" class="post-form">{% csrf_token %}
+            <button type="submit" class="save btn btn-default" name="favorite">Add to favorite</button>
+        </form>
+
         <div class="row">
             <div class="col-xs-12">{{ article.date }}</div>
             {% if user.is_authenticated %}

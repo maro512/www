@@ -1,0 +1,9 @@
+{% extends 'newspaper/home.html' %}
+
+{% block content %}
+    {% for favorite in favorites %}
+        <a href="{% url 'article_detail' pk=favorite.article.pk %}" class="list-group-item">
+            <h3>{{ favorite.article }} <small>  {{ favorite.article.date }},   author: {{ favorite.article.author }}</small></h3>
+        </a>
+    {% endfor %}
+{% endblock %}

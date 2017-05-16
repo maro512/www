@@ -25,6 +25,9 @@ class Comment(models.Model):
     content = models.TextField()
 
 
-class Event(models.Model):
-    date = models.DateTimeField(default=timezone.now)
-    content = models.TextField()
+class Favorite(models.Model):
+    user = models.ForeignKey('auth.User', related_name='favorite')
+    article = models.ForeignKey('Article', related_name='favorite')
+    comment = models.TextField(default="")
+    rating = models.IntegerField(choices=((1, 1), (2, 2), (3, 3), (4, 4), (5, 5),), default="1")
+
