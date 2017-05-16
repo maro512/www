@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="36f19f76-be29-4794-86e8-032680bca144" name="Default" comment="views">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/newspaper/templates/newspaper/favorite_edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
+    <list default="true" id="36f19f76-be29-4794-86e8-032680bca144" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newspaper/forms.py" afterPath="$PROJECT_DIR$/newspaper/forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newspaper/models.py" afterPath="$PROJECT_DIR$/newspaper/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newspaper/templates/newspaper/favorite_list.html" afterPath="$PROJECT_DIR$/newspaper/templates/newspaper/favorite_list.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newspaper/urls.py" afterPath="$PROJECT_DIR$/newspaper/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newspaper/views.py" afterPath="$PROJECT_DIR$/newspaper/views.py" />
     </list>
@@ -55,7 +50,7 @@
         <entry file="file://$PROJECT_DIR$/newspaper/templates/newspaper/comment.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="176">
-              <caret line="8" column="31" lean-forward="true" selection-start-line="6" selection-start-column="24" selection-end-line="8" selection-end-column="31" />
+              <caret line="8" column="31" lean-forward="false" selection-start-line="6" selection-start-column="24" selection-end-line="8" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -64,8 +59,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/newspaper/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="387">
-              <caret line="170" column="28" lean-forward="false" selection-start-line="170" selection-start-column="28" selection-end-line="170" selection-end-column="28" />
+            <state relative-caret-position="167">
+              <caret line="180" column="19" lean-forward="false" selection-start-line="180" selection-start-column="19" selection-end-line="180" selection-end-column="19" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
@@ -73,14 +68,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="article.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/newspaper/templates/newspaper/article.html">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WWW/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="9" column="6" lean-forward="false" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
-              <folding>
-                <marker date="1494945047287" expanded="true" signature="278:340" ph="..." />
-              </folding>
+            <state relative-caret-position="168">
+              <caret line="88" column="55" lean-forward="false" selection-start-line="88" selection-start-column="55" selection-end-line="88" selection-end-column="55" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WWW/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="220">
+              <caret line="19" column="42" lean-forward="true" selection-start-line="19" selection-start-column="42" selection-end-line="19" selection-end-column="42" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -91,7 +94,16 @@
             <state relative-caret-position="176">
               <caret line="8" column="36" lean-forward="false" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
               <folding>
-                <marker date="1494945047287" expanded="false" signature="1160:1169" ph="..." />
+                <marker date="1494949460609" expanded="true" signature="460:1315" ph="..." />
+                <marker date="1494949460609" expanded="true" signature="534:979" ph="{% if user.is_authenticated ... %}" />
+                <marker date="1494949460609" expanded="true" signature="581:955" ph="{% if user.is_staff or user == article.author ... %}" />
+                <marker date="1494949460609" expanded="true" signature="683:926" ph="..." />
+                <marker date="1494949460609" expanded="false" signature="1040:1049" ph="..." />
+                <marker date="1494949460609" expanded="true" signature="1050:1197" ph="..." />
+                <marker date="1494949460609" expanded="true" signature="1345:1513" ph="..." />
+                <marker date="1494949460609" expanded="true" signature="1540:1696" ph="..." />
+                <marker date="1494949460609" expanded="true" signature="1554:1682" ph="{% if user.is_authenticated ... %}" />
+                <marker date="1494949460609" expanded="true" signature="1723:1812" ph="..." />
               </folding>
             </state>
           </provider>
@@ -100,28 +112,20 @@
       <file leaf-file-name="favorite_list.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/newspaper/templates/newspaper/favorite_list.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="12" column="52" lean-forward="true" selection-start-line="12" selection-start-column="52" selection-end-line="12" selection-end-column="52" />
-              <folding />
+            <state relative-caret-position="308">
+              <caret line="14" column="17" lean-forward="false" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
+              <folding>
+                <marker date="1494950406178" expanded="true" signature="61:835" ph="{% for favorite in favorites ... %}" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="favorite_edit.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="favorite_edit.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/newspaper/templates/newspaper/favorite_edit.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="66">
-              <caret line="3" column="61" lean-forward="true" selection-start-line="3" selection-start-column="61" selection-end-line="3" selection-end-column="61" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="event_edit.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/newspaper/templates/newspaper/event_edit.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="8" selection-end-column="14" />
+              <caret line="3" column="61" lean-forward="false" selection-start-line="3" selection-start-column="61" selection-end-line="3" selection-end-column="61" />
               <folding />
             </state>
           </provider>
@@ -130,7 +134,7 @@
       <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/newspaper/forms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="365">
+            <state relative-caret-position="1386">
               <caret line="63" column="99" lean-forward="false" selection-start-line="63" selection-start-column="99" selection-end-line="63" selection-end-column="99" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
@@ -139,11 +143,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/newspaper/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="233">
-              <caret line="14" column="78" lean-forward="true" selection-start-line="14" selection-start-column="78" selection-end-line="14" selection-end-column="78" />
+            <state relative-caret-position="409">
+              <caret line="21" column="48" lean-forward="false" selection-start-line="21" selection-start-column="48" selection-end-line="21" selection-end-column="48" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -215,12 +219,12 @@
         <option value="$PROJECT_DIR$/newspaper/templates/errors/403.html" />
         <option value="$PROJECT_DIR$/newspaper/static/newspaper/css/customStylesheet.css" />
         <option value="$PROJECT_DIR$/newspaper/templates/newspaper/favorite_list.html" />
-        <option value="$PROJECT_DIR$/newspaper/urls.py" />
         <option value="$PROJECT_DIR$/newspaper/models.py" />
         <option value="$PROJECT_DIR$/newspaper/templates/newspaper/article_detail.html" />
-        <option value="$PROJECT_DIR$/newspaper/views.py" />
         <option value="$PROJECT_DIR$/newspaper/forms.py" />
         <option value="$PROJECT_DIR$/newspaper/templates/newspaper/favorite_edit.html" />
+        <option value="$PROJECT_DIR$/newspaper/urls.py" />
+        <option value="$PROJECT_DIR$/newspaper/views.py" />
       </list>
     </option>
   </component>
@@ -365,6 +369,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="ChangesBrowser.SHOW_FLATTEN" value="true" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -734,7 +739,14 @@
       <option name="project" value="LOCAL" />
       <updated>1494853446097</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="forms itp">
+      <created>1494946524046</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1494946524046</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TodoView">
@@ -748,14 +760,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1006" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30936074" sideWeight="0.5107143" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32762557" sideWeight="0.49761903" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32762557" sideWeight="0.50714284" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32762557" sideWeight="0.49285713" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30936074" sideWeight="0.4892857" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30936074" sideWeight="0.49166667" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20535715" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -803,7 +814,8 @@
     <MESSAGE value="Odrobina estetyki4" />
     <MESSAGE value="Odrobina estetyki5" />
     <MESSAGE value="403" />
-    <option name="LAST_COMMIT_MESSAGE" value="403" />
+    <MESSAGE value="forms itp" />
+    <option name="LAST_COMMIT_MESSAGE" value="forms itp" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -973,25 +985,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WWW/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="19" column="42" lean-forward="true" selection-start-line="19" selection-start-column="42" selection-end-line="19" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/newspaper/templates/newspaper/article_edit.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="8" column="14" lean-forward="false" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WWW/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="88" column="55" lean-forward="false" selection-start-line="88" selection-start-column="55" selection-end-line="88" selection-end-column="55" />
           <folding />
         </state>
       </provider>
@@ -1113,35 +1110,17 @@
     <entry file="file://$PROJECT_DIR$/newspaper/templates/newspaper/comment.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
-          <caret line="8" column="31" lean-forward="true" selection-start-line="6" selection-start-column="24" selection-end-line="8" selection-end-column="31" />
+          <caret line="8" column="31" lean-forward="false" selection-start-line="6" selection-start-column="24" selection-end-line="8" selection-end-column="31" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newspaper/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="14" column="78" lean-forward="true" selection-start-line="14" selection-start-column="78" selection-end-line="14" selection-end-column="78" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/newspaper/templates/newspaper/favorite_list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="12" column="52" lean-forward="true" selection-start-line="12" selection-start-column="52" selection-end-line="12" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/newspaper/templates/newspaper/article_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="8" column="36" lean-forward="false" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
+        <state relative-caret-position="308">
+          <caret line="14" column="17" lean-forward="false" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
           <folding>
-            <marker date="1494945047287" expanded="false" signature="1160:1169" ph="..." />
+            <marker date="1494950406178" expanded="true" signature="61:835" ph="{% for favorite in favorites ... %}" />
           </folding>
         </state>
       </provider>
@@ -1156,19 +1135,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/newspaper/views.py">
+    <entry file="file://$PROJECT_DIR$/newspaper/templates/newspaper/favorite_edit.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="170" column="28" lean-forward="false" selection-start-line="170" selection-start-column="28" selection-end-line="170" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="66">
+          <caret line="3" column="61" lean-forward="false" selection-start-line="3" selection-start-column="61" selection-end-line="3" selection-end-column="61" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/newspaper/forms.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
+        <state relative-caret-position="1386">
           <caret line="63" column="99" lean-forward="false" selection-start-line="63" selection-start-column="99" selection-end-line="63" selection-end-column="99" />
           <folding>
             <element signature="e#0#24#0" expanded="true" />
@@ -1176,11 +1153,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/newspaper/templates/newspaper/favorite_edit.html">
+    <entry file="file://$PROJECT_DIR$/newspaper/templates/newspaper/article_detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="3" column="61" lean-forward="true" selection-start-line="3" selection-start-column="61" selection-end-line="3" selection-end-column="61" />
+        <state relative-caret-position="176">
+          <caret line="8" column="36" lean-forward="false" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
+          <folding>
+            <marker date="1494949460609" expanded="true" signature="460:1315" ph="..." />
+            <marker date="1494949460609" expanded="true" signature="534:979" ph="{% if user.is_authenticated ... %}" />
+            <marker date="1494949460609" expanded="true" signature="581:955" ph="{% if user.is_staff or user == article.author ... %}" />
+            <marker date="1494949460609" expanded="true" signature="683:926" ph="..." />
+            <marker date="1494949460609" expanded="false" signature="1040:1049" ph="..." />
+            <marker date="1494949460609" expanded="true" signature="1050:1197" ph="..." />
+            <marker date="1494949460609" expanded="true" signature="1345:1513" ph="..." />
+            <marker date="1494949460609" expanded="true" signature="1540:1696" ph="..." />
+            <marker date="1494949460609" expanded="true" signature="1554:1682" ph="{% if user.is_authenticated ... %}" />
+            <marker date="1494949460609" expanded="true" signature="1723:1812" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WWW/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="88" column="55" lean-forward="false" selection-start-line="88" selection-start-column="55" selection-end-line="88" selection-end-column="55" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WWW/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="19" column="42" lean-forward="true" selection-start-line="19" selection-start-column="42" selection-end-line="19" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newspaper/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="180" column="19" lean-forward="false" selection-start-line="180" selection-start-column="19" selection-end-line="180" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/newspaper/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="409">
+          <caret line="21" column="48" lean-forward="false" selection-start-line="21" selection-start-column="48" selection-end-line="21" selection-end-column="48" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

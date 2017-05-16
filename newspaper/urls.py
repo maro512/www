@@ -19,4 +19,5 @@ urlpatterns = [
     url(r'^article/(?P<pk>[0-9]+)/remove/$', views.article_remove, name='article_remove'),
     url(r'^article/(?P<fk>[0-9]+)/comment/(?P<pk>[0-9]+)/remove/$', views.comment_remove, name='comment_remove'),
     url(r'^accounts/register/$', views.user_new, name='user_new'),
+    url(r'', views.not_found, name='not_found'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

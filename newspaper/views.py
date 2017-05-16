@@ -1,11 +1,8 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404, redirect
-from django.utils import timezone
-
 from .models import Article, Comment, Favorite
 from .forms import ArticleForm, CommentForm, CreateUserForm, FavoriteForm
 from django.contrib.auth.decorators import login_required
-from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth import views
 
 
@@ -15,7 +12,10 @@ def article_list(request):
 
 
 def article_detail(request, pk):
-    article = get_object_or_404(Article, pk=pk)
+    try:
+        article = Article.objects.get(pk=pk)
+    except Article.DoesNotExist:
+        return render(request, 'errors/404.html')
     comments = Comment.objects.filter(article=pk).order_by('-date')
     if request.method == "POST":
         form = CommentForm(request.POST)
@@ -49,7 +49,10 @@ def article_new(request):
 def article_edit(request, pk):
     if not request.user.is_authenticated:
         return render(request, 'errors/401.html', status=401)
-    article = get_object_or_404(Article, pk=pk)
+    try:
+        article = Article.objects.get(pk=pk)
+    except Article.DoesNotExist:
+        return render(request, 'errors/404.html')
     if not request.user.is_staff and not request.user == article.author:
         return render(request, 'errors/403.html', status=403)
     if request.method == "POST":
@@ -78,7 +81,10 @@ def article_publish(request, pk):
         return render(request, 'errors/401.html', status=401)
     if not request.user.is_staff:
         return render(request, 'errors/403.html', status=403)
-    article = get_object_or_404(Article, pk=pk)
+    try:
+        article = Article.objects.get(pk=pk)
+    except Article.DoesNotExist:
+        return render(request, 'errors/404.html')
     article.publish()
     return redirect('article_detail', pk=pk)
 
@@ -86,7 +92,10 @@ def article_publish(request, pk):
 def article_remove(request, pk):
     if not request.user.is_authenticated:
         return render(request, 'errors/401.html', status=401)
-    article = get_object_or_404(Article, pk=pk)
+    try:
+        article = Article.objects.get(pk=pk)
+    except Article.DoesNotExist:
+        return render(request, 'errors/404.html')
     if not request.user.is_staff and not request.user == article.author:
         return render(request, 'errors/403.html', status=403)
     article.delete()
@@ -96,7 +105,10 @@ def article_remove(request, pk):
 def comment_remove(request, fk, pk):
     if not request.user.is_authenticated:
         return render(request, 'errors/401.html', status=401)
-    comment = get_object_or_404(Comment, pk=pk)
+    try:
+        comment = Comment.objects.get(pk=pk)
+    except Comment.DoesNotExist:
+        return render(request, 'errors/404.html')
     if not request.user.is_staff and not request.user == comment.author:
         return render(request, 'errors/403.html', status=403)
     comment.delete()
@@ -129,9 +141,13 @@ def user_list(request):
     users = User.objects.all()
     return render(request, 'newspaper/user_list.html', {'users': users})
 
+
 @login_required
 def favorite_add(request, pk):  # post
-    article = get_object_or_404(Article, pk=pk)
+    try:
+        article = Article.objects.get(pk=pk)
+    except Article.DoesNotExist:
+        return render(request, 'errors/404.html')
     favorite = Favorite.objects.all().filter(user=request.user, article=article)
     if bool(favorite) is False:
         favorite = Favorite()
@@ -143,7 +159,10 @@ def favorite_add(request, pk):  # post
 
 @login_required
 def favorite_remove(request, pk):  # post
-    favorite = get_object_or_404(Favorite, pk=pk)
+    try:
+        favorite = Favorite.objects.get(pk=pk)
+    except Favorite.DoesNotExist:
+        return render(request, 'errors/404.html')
     favorite.delete()
     return redirect('favorite_list')
 
@@ -157,7 +176,10 @@ def favorite_list(request):
 def favorite_edit(request, pk):
     if not request.user.is_authenticated:
         return render(request, 'errors/401.html', status=401)
-    favorite = get_object_or_404(Favorite, pk=pk)
+    try:
+        favorite = Favorite.objects.get(pk=pk)
+    except Favorite.DoesNotExist:
+        return render(request, 'errors/404.html')
     if not request.user.is_staff and not request.user == favorite.user:
         return render(request, 'errors/403.html', status=403)
     if request.method == "POST":
@@ -170,3 +192,7 @@ def favorite_edit(request, pk):
     else:
         form = FavoriteForm()
     return render(request, 'newspaper/favorite_edit.html', {'form': form})
+
+
+def not_found(request):
+    return render(request, 'errors/404.html')
