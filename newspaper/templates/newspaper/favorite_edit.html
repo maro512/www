@@ -1,0 +1,8 @@
+{% extends 'newspaper/home.html' %}
+
+{% block content %}
+    <form enctype="multipart/form-data" method="POST" class="form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+{% endblock %}

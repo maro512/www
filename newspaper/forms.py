@@ -53,6 +53,13 @@ class CreateUserForm(forms.Form):
 
 
 class FavoriteForm(forms.Form):
-    class Meta:
-        model = Favorite
-        fields = ('comment', 'rating',)
+    CHOICES = (
+        (1, '1'),
+        (2, '2'),
+        (3, '3'),
+        (4, '4'),
+        (5, '5'),
+    )
+    comment = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control'}))
+    rating = forms.ChoiceField(choices=CHOICES, widget=forms.Select(attrs={'class': 'form-control'}))
+

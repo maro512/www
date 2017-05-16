@@ -26,8 +26,15 @@ class Comment(models.Model):
 
 
 class Favorite(models.Model):
+    CHOICES = (
+        (1, '1'),
+        (2, '2'),
+        (3, '3'),
+        (4, '4'),
+        (5, '5'),
+    )
     user = models.ForeignKey('auth.User', related_name='favorite')
     article = models.ForeignKey('Article', related_name='favorite')
     comment = models.TextField(default="")
-    rating = models.IntegerField(choices=((1, 1), (2, 2), (3, 3), (4, 4), (5, 5),), default="1")
+    rating = models.IntegerField(choices=CHOICES, default=1)
 

@@ -142,18 +142,6 @@ def user_list(request):
 
 
 @login_required
-def favorite_add(request, article):
-    if request.method == "POST":
-        form = FavoriteForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('article_detail', pk=article.pk)
-    else:
-        form = FavoriteForm()
-    return redirect('article_detail', pk=article.pk)
-
-
-@login_required
 def favorite_remove(request, pk):  # post
     favorite = get_object_or_404(Favorite, pk=pk)
     favorite.delete()
@@ -164,3 +152,21 @@ def favorite_remove(request, pk):  # post
 def favorite_list(request):
     favorites = Favorite.objects.filter(user=request.user)
     return render(request, 'newspaper/favorite_list.html', {'favorites': favorites})
+
+
+def favorite_edit(request, pk):
+    if not request.user.is_authenticated:
+        return render(request, 'errors/401.html', status=401)
+    favorite = get_object_or_404(Favorite, pk=pk)
+    if not request.user.is_staff and not request.user == favorite.user:
+        return render(request, 'errors/403.html', status=403)
+    if request.method == "POST":
+        form = FavoriteForm(request.POST)
+        if form.is_valid():
+            favorite.comment = form.cleaned_data['comment']
+            favorite.rating = form.cleaned_data['rating']
+            favorite.save()
+            return redirect('favorite_list')
+    else:
+        form = FavoriteForm()
+    return render(request, 'newspaper/favorite_edit.html', {'form': form})
