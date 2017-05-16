@@ -3,16 +3,20 @@
 {% block content %}
     <div class="list-group">
     {% for favorite in favorites %}
+        <div class="btn-group">
+            <a class="btn btn-primary" href="{% url 'favorite_remove' pk=favorite.pk %}">Remove</a>
+            <a class="btn btn-primary" href="{% url 'favorite_edit' pk=favorite.pk %}">Edit</a>
+        </div>
         <a href="{% url 'article_detail' pk=favorite.article.pk %}" class="list-group-item">
             <h3>{{ favorite.article }} <small> author: {{ favorite.article.author }}</small>
-{#                <span >Remove#}
-{#                    <a class="badge pull-right" href="{% url 'favorite_remove' pk=favorite.pk %}">Remove</a>#}
-{#                </span>#}
-{#                <span class="badge pull-right">#}
-{#                    <a href="{% url 'favorite_edit' pk=favorite.pk %}">Edit</a>#}
-{#                </span>#}
+                <span class="badge pull-right">
+                    {{ favorite.rating }}
+                </span>
             </h3>
         </a>
+        <p class="list-group-item" style="margin-bottom: 20px">
+            {{ favorite.comment }}
+        </p>
     {% endfor %}
     </div>
 {% endblock %}
