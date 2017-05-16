@@ -30,8 +30,9 @@ def article_detail(request, pk):
         return render(request, 'newspaper/article_detail.html', {'article': article, 'comments': comments, 'form': form})
 
 
-@login_required
 def article_new(request):
+    if not request.user.is_authenticated:
+        return render(request, 'errors/401.html', status=401)
     if request.method == "POST":
         form = ArticleForm(request.POST, request.FILES)
         if form.is_valid():
@@ -44,9 +45,12 @@ def article_new(request):
     return render(request, 'newspaper/article_edit.html', {'form': form})
 
 
-@login_required
 def article_edit(request, pk):
+    if not request.user.is_authenticated:
+        return render(request, 'errors/401.html', status=401)
     article = get_object_or_404(Article, pk=pk)
+    if not request.user.is_staff and not request.user == article.author:
+        return render(request, 'errors/403.html', status=403)
     if request.method == "POST":
         form = ArticleForm(request.POST, instance=article)
         if form.is_valid():
@@ -68,23 +72,32 @@ def not_published_list(request):
     return render(request, 'newspaper/not_published_list.html', {'article_list': articles_list})
 
 
-@staff_member_required
 def article_publish(request, pk):
+    if not request.user.is_authenticated:
+        return render(request, 'errors/401.html', status=401)
+    if not request.user.is_staff:
+        return render(request, 'errors/403.html', status=403)
     article = get_object_or_404(Article, pk=pk)
     article.publish()
     return redirect('article_detail', pk=pk)
 
 
-@login_required
 def article_remove(request, pk):
+    if not request.user.is_authenticated:
+        return render(request, 'errors/401.html', status=401)
     article = get_object_or_404(Article, pk=pk)
+    if not request.user.is_staff and not request.user == article.author:
+        return render(request, 'errors/403.html', status=403)
     article.delete()
     return redirect('article_list')
 
 
-@login_required
 def comment_remove(request, fk, pk):
+    if not request.user.is_authenticated:
+        return render(request, 'errors/401.html', status=401)
     comment = get_object_or_404(Comment, pk=pk)
+    if not request.user.is_staff and not request.user == comment.author:
+        return render(request, 'errors/403.html', status=403)
     comment.delete()
     return redirect('article_detail', pk=fk)
 
@@ -99,9 +112,10 @@ def user_new(request):
     return render(request, 'registration/register.html', {'form': form})
 
 
-@login_required
-def my_article(request, user):
-    articles_list = Article.objects.filter(author=user).order_by('-date')
+def my_article(request):
+    if not request.user.is_authenticated:
+        return render(request, 'errors/401.html', status=401)
+    articles_list = Article.objects.filter(author=request.user).order_by('-date')
     return render(request, 'newspaper/my_article.html', {'article_list': articles_list})
 
 
@@ -119,8 +133,9 @@ def event_list(request):
     return render(request, 'newspaper/event_list.html', {'events': events})
 
 
-@login_required
 def event_new(request):
+    if not request.user.is_authenticated:
+        return render(request, 'errors/401.html', status=401)
     if request.method == "POST":
         form = EventForm(request.POST)
         if form.is_valid():
