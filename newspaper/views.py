@@ -28,10 +28,12 @@ def article_detail(request, pk):
     elif request.method == "POST" and 'favorite' in request.POST:
         form = FavoriteForm(request.POST)
         if form.is_valid():
-            favorite = Favorite()
-            favorite.user = request.user
-            favorite.article = article
-            favorite.save()
+            favorite = Favorite.objects.all().filter(user=request.user, article=article)
+            if bool(favorite) is False:
+                favorite = Favorite()
+                favorite.user = request.user
+                favorite.article = article
+                favorite.save()
             return redirect('article_detail', pk=article.pk)
     else:
         form = CommentForm()
@@ -152,7 +154,7 @@ def favorite_add(request, article):
 
 
 @login_required
-def favorite_remove(request, pk):                               #post
+def favorite_remove(request, pk):  # post
     favorite = get_object_or_404(Favorite, pk=pk)
     favorite.delete()
     return redirect('favorite_list')
