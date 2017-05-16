@@ -2,8 +2,8 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 
-from .models import Article, Comment, Event
-from .forms import ArticleForm, CommentForm, CreateUserForm, EventForm
+from .models import Article, Comment, Favorite
+from .forms import ArticleForm, CommentForm, CreateUserForm, FavoriteForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth import views
@@ -101,6 +101,7 @@ def comment_remove(request, fk, pk):
     comment.delete()
     return redirect('article_detail', pk=fk)
 
+
 def user_new(request):
     if request.method == "POST":
         form = CreateUserForm(request.POST)
@@ -128,39 +129,26 @@ def user_list(request):
     return render(request, 'newspaper/user_list.html', {'users': users})
 
 
-def event_list(request):
-    events = Event.objects.filter(date__gte=timezone.now()).order_by('date')
-    return render(request, 'newspaper/event_list.html', {'events': events})
-
-
-def event_new(request):
-    if not request.user.is_authenticated:
-        return render(request, 'errors/401.html', status=401)
+@login_required
+def favorite_add(request, article):
     if request.method == "POST":
-        form = EventForm(request.POST)
+        form = FavoriteForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('event_list')
+            return redirect('article_detail', pk=article.pk)
     else:
-        form = EventForm()
-    return render(request, 'newspaper/event_edit.html', {'form': form})
+        form = FavoriteForm()
+    return redirect('article_detail', pk=article.pk)
 
 
 @login_required
-def event_edit(request, pk):
-    event = get_object_or_404(Event, pk=pk)
-    if request.method == "POST":
-        form = ArticleForm(request.POST, instance=event)
-        if form.is_valid():
-            event.save()
-            return redirect('event_list')
-    else:
-        form = ArticleForm(instance=event)
-    return render(request, 'newspaper/event_edit.html', {'form': form})
+def favorite_remove(request, pk):                               #post
+    favorite = get_object_or_404(Favorite, pk=pk)
+    favorite.delete()
+    return redirect('favorite_list')
 
 
 @login_required
-def event_remove(request, pk):
-    event = get_object_or_404(Event, pk=pk)
-    event.delete()
-    return redirect('event_list')
+def favorite_list(request):
+    favorites = Favorite.objects.filter(user=request.user)
+    return render(request, 'newspaper/favorite_list.html', {'favorites': favorites})
