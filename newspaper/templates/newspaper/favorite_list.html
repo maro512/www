@@ -1,17 +1,18 @@
 {% extends 'newspaper/home.html' %}
 
 {% block content %}
+    <div class="list-group">
     {% for favorite in favorites %}
         <a href="{% url 'article_detail' pk=favorite.article.pk %}" class="list-group-item">
-            <h3>{{ favorite.article }} <small>  {{ favorite.article.date }},   author: {{ favorite.article.author }},
-                Rating: {{ favorite.rating }}</small></h3>
-        <small>{{ favorite.comment }}</small>
-        <span class="badge pull-right">
-            <a href="{% url 'favorite_remove' pk=favorite.pk %}">Remove</a>
-        </span>
-        <span class="badge pull-right">
-            <a href="{% url 'favorite_edit' pk=favorite.pk %}">Edit</a>
-        </span>
+            <h3>{{ favorite.article }} <small> author: {{ favorite.article.author }}</small>
+{#                <span >Remove#}
+{#                    <a class="badge pull-right" href="{% url 'favorite_remove' pk=favorite.pk %}">Remove</a>#}
+{#                </span>#}
+{#                <span class="badge pull-right">#}
+{#                    <a href="{% url 'favorite_edit' pk=favorite.pk %}">Edit</a>#}
+{#                </span>#}
+            </h3>
         </a>
     {% endfor %}
+    </div>
 {% endblock %}

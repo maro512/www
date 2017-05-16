@@ -7,9 +7,7 @@
         {% endif %}
 
         {% if user.is_authenticated %}
-            <form enctype="multipart/form-data" method="POST" class="post-form">{% csrf_token %}
-                <button type="submit" class="save btn btn-default" name="favorite">Add to favorite</button>
-            </form>
+            <a class="btn btn-primary" href="{% url 'favorite_add' pk=article.pk %}">Add to favorite</a>
         {% endif %}
 
         <div class="row">

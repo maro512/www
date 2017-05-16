@@ -17,7 +17,7 @@ def article_list(request):
 def article_detail(request, pk):
     article = get_object_or_404(Article, pk=pk)
     comments = Comment.objects.filter(article=pk).order_by('-date')
-    if request.method == "POST" and 'comment' in request.POST:
+    if request.method == "POST":
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
@@ -25,21 +25,10 @@ def article_detail(request, pk):
             comment.article = article
             comment.save()
             return redirect('article_detail', pk=article.pk)
-    elif request.method == "POST" and 'favorite' in request.POST:
-        form = FavoriteForm(request.POST)
-        if form.is_valid():
-            favorite = Favorite.objects.all().filter(user=request.user, article=article)
-            if bool(favorite) is False:
-                favorite = Favorite()
-                favorite.user = request.user
-                favorite.article = article
-                favorite.save()
-            return redirect('article_detail', pk=article.pk)
     else:
         form = CommentForm()
-        favorite = FavoriteForm()
-        return render(request, 'newspaper/article_detail.html',
-                      {'article': article, 'comments': comments, 'form': form, 'favorite': favorite})
+    return render(request, 'newspaper/article_detail.html',
+                  {'article': article, 'comments': comments, 'form': form} )
 
 
 def article_new(request):
@@ -139,6 +128,17 @@ def user_list(request):
         return render(request, 'errors/403.html', status=403)
     users = User.objects.all()
     return render(request, 'newspaper/user_list.html', {'users': users})
+
+@login_required
+def favorite_add(request, pk):  # post
+    article = get_object_or_404(Article, pk=pk)
+    favorite = Favorite.objects.all().filter(user=request.user, article=article)
+    if bool(favorite) is False:
+        favorite = Favorite()
+        favorite.user = request.user
+        favorite.article = article
+        favorite.save()
+    return redirect('article_detail', pk=article.pk)
 
 
 @login_required
